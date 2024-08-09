@@ -56,6 +56,12 @@
     },
     "analysisDate": {
       "type": "datetime"
+    },
+    "positionCompatibility": {
+      "type": "decimal"
+    },
+    "hiringSalary": {
+      "type": "decimal"
     }
   }
 }

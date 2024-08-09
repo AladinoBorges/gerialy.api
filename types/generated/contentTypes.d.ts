@@ -1017,6 +1017,8 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     automatedAnalysisFromIA: Attribute.Blocks;
     analysedByIA: Attribute.Boolean;
     analysisDate: Attribute.DateTime;
+    positionCompatibility: Attribute.Decimal;
+    hiringSalary: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
