@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_recruitment_stages",
+  "info": {
+    "displayName": "stages",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 1
+    }
+  }
+}
