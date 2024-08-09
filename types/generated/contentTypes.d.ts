@@ -1014,6 +1014,9 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 5000;
       }>;
+    automatedAnalysisFromIA: Attribute.Blocks;
+    analysedByIA: Attribute.Boolean;
+    analysisDate: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

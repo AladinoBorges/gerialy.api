@@ -47,6 +47,15 @@
     "applicantEmail": {
       "type": "string",
       "maxLength": 5000
+    },
+    "automatedAnalysisFromIA": {
+      "type": "blocks"
+    },
+    "analysedByIA": {
+      "type": "boolean"
+    },
+    "analysisDate": {
+      "type": "datetime"
     }
   }
 }
