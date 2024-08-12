@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "application",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "allocation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::allocation.allocation",
+      "inversedBy": "applications"
+    },
+    "process": {
+      "displayName": "process",
+      "type": "component",
+      "repeatable": true,
+      "component": "recruitment.process"
+    },
+    "applicant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::applicant.applicant",
+      "inversedBy": "applications"
+    },
+    "wasHired": {
+      "type": "boolean"
+    },
+    "salaryExpectation": {
+      "type": "decimal",
+      "max": 999999999
+    },
+    "immediateAvailability": {
+      "type": "boolean"
+    },
+    "applicantName": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "applicantEmail": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "automatedAnalysisFromIA": {
+      "type": "blocks"
+    },
+    "analysedByIA": {
+      "type": "boolean"
+    },
+    "analysisDate": {
+      "type": "datetime"
+    },
+    "positionCompatibility": {
+      "type": "decimal"
+    },
+    "hiringSalary": {
+      "type": "decimal"
+    }
+  }
+}
