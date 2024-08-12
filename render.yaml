@@ -1,0 +1,53 @@
+# Exported from Render on 2024-08-12T16:29:33Z
+databases:
+- name: ger.ia
+  databaseName: geria
+  user: aladinoborges
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "16"
+services:
+- type: web
+  name: ger.ia.api
+  runtime: node
+  repo: https://github.com/AladinoBorges/ger.ia.api
+  plan: free
+  envVars:
+  - key: TRANSFER_TOKEN_SALT
+    sync: false
+  - key: POSTGRES_USER
+    sync: false
+  - key: POSTGRES_PASSWORD
+    fromDatabase:
+      name: ger.ia
+      property: password
+  - key: POSTGRES_URL
+    fromDatabase:
+      name: ger.ia
+      property: connectionString
+  - key: POSTGRES_DATABASE
+    sync: false
+  - key: NODE_ENV
+    sync: false
+  - key: JWT_SECRET
+    sync: false
+  - key: DATABASE_SSL
+    sync: false
+  - key: DATABASE_PORT
+    sync: false
+  - key: DATABASE_CLIENT
+    sync: false
+  - key: APP_KEYS
+    sync: false
+  - key: API_TOKEN_SALT
+    sync: false
+  - key: ADMIN_JWT_SECRET
+    sync: false
+  region: oregon
+  buildCommand: yarn --frozen-lockfile install; pnpm run build
+  startCommand: pnpm run start
+  healthCheckPath: /king
+version: "1"
