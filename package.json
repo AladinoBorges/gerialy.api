@@ -1,11 +1,11 @@
 {
-  "name": "data-falbor",
+  "name": "api.ger.ia",
   "version": "0.1.0",
   "private": true,
-  "description": "A Strapi application",
+  "description": "backend application powered by strapi and typescript",
   "license": "MIT",
   "author": {
-    "name": "A Strapi developer"
+    "name": "aladino borges"
   },
   "scripts": {
     "build": "strapi build",
@@ -25,7 +25,6 @@
     "react-router-dom": "5.3.4",
     "styled-components": "5.3.3"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"

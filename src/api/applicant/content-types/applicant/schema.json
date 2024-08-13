@@ -57,6 +57,12 @@
       "relation": "oneToMany",
       "target": "api::application.application",
       "mappedBy": "applicant"
+    },
+    "curricula": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::curriculum.curriculum",
+      "mappedBy": "applicant"
     }
   }
 }

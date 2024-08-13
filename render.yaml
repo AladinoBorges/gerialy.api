@@ -49,5 +49,5 @@ services:
   region: oregon
   buildCommand: yarn --frozen-lockfile install; pnpm run build
   startCommand: pnpm run start
-  healthCheckPath: /king
+  healthCheckPath: /
 version: "1"
