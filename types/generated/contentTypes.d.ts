@@ -977,6 +977,11 @@ export interface ApiApplicantApplicant extends Schema.CollectionType {
       'oneToMany',
       'api::application.application'
     >;
+    curricula: Attribute.Relation<
+      'api::applicant.applicant',
+      'oneToMany',
+      'api::curriculum.curriculum'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1064,6 +1069,47 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
   };
 }
 
+export interface ApiCurriculumCurriculum extends Schema.CollectionType {
+  collectionName: 'curricula';
+  info: {
+    singularName: 'curriculum';
+    pluralName: 'curricula';
+    displayName: 'curriculum';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Attribute.Blocks;
+    applicant: Attribute.Relation<
+      'api::curriculum.curriculum',
+      'manyToOne',
+      'api::applicant.applicant'
+    >;
+    name: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 500;
+      }>;
+    isActive: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::curriculum.curriculum',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::curriculum.curriculum',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1085,6 +1131,7 @@ declare module '@strapi/types' {
       'api::allocation.allocation': ApiAllocationAllocation;
       'api::applicant.applicant': ApiApplicantApplicant;
       'api::application.application': ApiApplicationApplication;
+      'api::curriculum.curriculum': ApiCurriculumCurriculum;
     }
   }
 }
