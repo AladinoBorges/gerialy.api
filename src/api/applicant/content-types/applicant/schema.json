@@ -63,6 +63,11 @@
       "relation": "oneToMany",
       "target": "api::curriculum.curriculum",
       "mappedBy": "applicant"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
