@@ -130,7 +130,8 @@
         "closed",
         "cancelled",
         "frozen"
-      ]
+      ],
+      "default": "active"
     }
   }
 }
