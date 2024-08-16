@@ -1060,6 +1060,14 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     analysisDate: Attribute.DateTime;
     positionCompatibility: Attribute.Decimal;
     hiringSalary: Attribute.Decimal;
+    analysisConclusion: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 10000;
+      }>;
+    emailCoverLetter: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20000;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

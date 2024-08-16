@@ -62,6 +62,14 @@
     },
     "hiringSalary": {
       "type": "decimal"
+    },
+    "analysisConclusion": {
+      "type": "text",
+      "maxLength": 10000
+    },
+    "emailCoverLetter": {
+      "type": "text",
+      "maxLength": 20000
     }
   }
 }
