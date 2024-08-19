@@ -1056,7 +1056,6 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 5000;
       }>;
-    automatedAnalysisFromIA: Attribute.Blocks;
     analysedByIA: Attribute.Boolean;
     analysisDate: Attribute.DateTime;
     positionCompatibility: Attribute.Decimal;
@@ -1068,6 +1067,10 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     emailCoverLetter: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 20000;
+      }>;
+    automatedAnalysisFromIA: Attribute.RichText &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50000;
       }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

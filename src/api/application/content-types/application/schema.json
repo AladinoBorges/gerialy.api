@@ -48,9 +48,6 @@
       "type": "string",
       "maxLength": 5000
     },
-    "automatedAnalysisFromIA": {
-      "type": "blocks"
-    },
     "analysedByIA": {
       "type": "boolean"
     },
@@ -70,6 +67,10 @@
     "emailCoverLetter": {
       "type": "text",
       "maxLength": 20000
+    },
+    "automatedAnalysisFromIA": {
+      "type": "richtext",
+      "maxLength": 50000
     }
   }
 }
