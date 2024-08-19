@@ -1,5 +1,6 @@
+"use strict";
+
 import { sanitize } from "@strapi/utils";
-import { Context } from "koa";
 
 const sanitizeContent = async (context, data, contentType) => {
   return sanitize.contentAPI.output(data, contentType, {
@@ -8,30 +9,36 @@ const sanitizeContent = async (context, data, contentType) => {
 };
 
 export default {
-  async applicationAnalysis(context: Context) {
-    const { application, aiMessages } = context.body as {
-      application: string;
-      aiMessages: string;
-    };
+  async applicationAnalysis(context) {
+    try {
+      const { data } = context.request.body;
+      const { application, aiMessages } = data;
 
-    const contentType = strapi.contentType("api::application.application");
+      const contentType = strapi.contentType("api::application.application");
 
-    const analysedApplication = await strapi
-      .service("api::gia.gia")
-      .applicationAnalysis(application, aiMessages);
+      const analysedApplication = await strapi
+        .service("api::gia.gia")
+        .applicationAnalysis(application, aiMessages);
 
-    if (!!analysedApplication?.id) {
-      const sanitizedApplication = await sanitizeContent(
-        analysedApplication,
-        context,
-        contentType
-      );
+      if (!!analysedApplication?.id) {
+        const sanitizedApplication = await sanitizeContent(
+          context,
+          analysedApplication,
+          contentType
+        );
 
-      context.status = 200;
-      context.body = sanitizedApplication;
-    } else {
-      context.status = 500;
-      context.body = { error: "Something went wrong with the server." };
+        context.response.status = 200;
+        context.response.body = sanitizedApplication;
+      } else {
+        context.response.status = 500;
+        context.response.body = {
+          error: "Something went wrong with the server.",
+        };
+      }
+    } catch (error) {
+      context.response.status = 500;
+
+      context.response.body = { error: error?.message };
     }
   },
 };

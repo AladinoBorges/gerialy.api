@@ -25,7 +25,14 @@ export default {
       messages,
     });
 
-    return newCompletion.choices[0]?.message?.content;
+    const contentCompletion =
+      newCompletion.choices[0]?.message?.content?.trim();
+
+    if (!!contentCompletion) {
+      return JSON.parse(contentCompletion);
+    }
+
+    return null;
   },
 
   async applicationAnalysis(application, aiMessages) {
