@@ -775,6 +775,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
         minLength: 2;
         maxLength: 1000;
       }>;
+    applicant: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::applicant.applicant'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -992,6 +997,15 @@ export interface ApiApplicantApplicant extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    curriculum: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50000;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
