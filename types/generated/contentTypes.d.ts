@@ -775,6 +775,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
         minLength: 2;
         maxLength: 1000;
       }>;
+    applicant: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::applicant.applicant'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -901,7 +906,8 @@ export interface ApiAllocationAllocation extends Schema.CollectionType {
         i18n: {
           localized: true;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<'active'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -991,6 +997,15 @@ export interface ApiApplicantApplicant extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    curriculum: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50000;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1055,11 +1070,22 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 5000;
       }>;
-    automatedAnalysisFromIA: Attribute.Blocks;
     analysedByIA: Attribute.Boolean;
     analysisDate: Attribute.DateTime;
     positionCompatibility: Attribute.Decimal;
     hiringSalary: Attribute.Decimal;
+    analysisConclusion: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 10000;
+      }>;
+    emailCoverLetter: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20000;
+      }>;
+    automatedAnalysisFromIA: Attribute.RichText &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50000;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

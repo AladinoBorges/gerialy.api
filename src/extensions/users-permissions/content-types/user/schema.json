@@ -69,6 +69,12 @@
       "type": "string",
       "minLength": 2,
       "maxLength": 1000
+    },
+    "applicant": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::applicant.applicant",
+      "mappedBy": "user"
     }
   }
 }
