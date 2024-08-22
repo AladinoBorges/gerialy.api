@@ -96,11 +96,11 @@
     "applicationURL": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
-      "maxLength": 10000
+      "maxLength": 999
     },
     "openPositions": {
       "pluginOptions": {
@@ -132,6 +132,15 @@
         "frozen"
       ],
       "default": "active"
+    },
+    "applicationEmail": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "maxLength": 999
     }
   }
 }
