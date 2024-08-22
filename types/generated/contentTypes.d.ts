@@ -883,11 +883,11 @@ export interface ApiAllocationAllocation extends Schema.CollectionType {
     applicationURL: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }> &
       Attribute.SetMinMaxLength<{
-        maxLength: 10000;
+        maxLength: 999;
       }>;
     openPositions: Attribute.Integer &
       Attribute.SetPluginOptions<{
@@ -908,6 +908,15 @@ export interface ApiAllocationAllocation extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'active'>;
+    applicationEmail: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 999;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

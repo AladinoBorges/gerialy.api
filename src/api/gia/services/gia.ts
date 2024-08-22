@@ -38,17 +38,15 @@ export default {
   async applicationAnalysis(application, aiMessages) {
     const contentType = strapi.contentType("api::application.application");
 
-    const newApplication = await createNewEntry(contentType, application);
-
     let newAIAnalysis = null;
     let analysedApplication = null;
 
-    if (newApplication?.id) {
+    if (application?.id) {
       newAIAnalysis = await this.openAICompletion(aiMessages);
     }
 
     if (!!newAIAnalysis) {
-      analysedApplication = await updateEntry(contentType, newApplication?.id, {
+      analysedApplication = await updateEntry(contentType, application?.id, {
         ...newAIAnalysis,
         analysedByIA: true,
         analysisDate: new Date(),
