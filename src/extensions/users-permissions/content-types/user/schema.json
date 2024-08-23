@@ -75,6 +75,12 @@
       "relation": "oneToOne",
       "target": "api::applicant.applicant",
       "mappedBy": "user"
+    },
+    "wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet",
+      "mappedBy": "user"
     }
   }
 }

@@ -780,6 +780,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'api::applicant.applicant'
     >;
+    wallet: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::wallet.wallet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1015,6 +1020,15 @@ export interface ApiApplicantApplicant extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 50000;
       }>;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        maxLength: 999;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1154,6 +1168,44 @@ export interface ApiCurriculumCurriculum extends Schema.CollectionType {
   };
 }
 
+export interface ApiWalletWallet extends Schema.CollectionType {
+  collectionName: 'wallets';
+  info: {
+    singularName: 'wallet';
+    pluralName: 'wallets';
+    displayName: 'wallet';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coins: Attribute.Integer & Attribute.DefaultTo<0>;
+    demoCoins: Attribute.Integer & Attribute.DefaultTo<12>;
+    user: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::wallet.wallet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1176,6 +1228,7 @@ declare module '@strapi/types' {
       'api::applicant.applicant': ApiApplicantApplicant;
       'api::application.application': ApiApplicationApplication;
       'api::curriculum.curriculum': ApiCurriculumCurriculum;
+      'api::wallet.wallet': ApiWalletWallet;
     }
   }
 }
