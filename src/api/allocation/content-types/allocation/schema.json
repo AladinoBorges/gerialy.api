@@ -35,7 +35,7 @@
       "maxLength": 10000,
       "minLength": 1
     },
-    "creator": {
+    "openedBy": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"

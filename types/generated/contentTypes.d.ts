@@ -836,7 +836,7 @@ export interface ApiAllocationAllocation extends Schema.CollectionType {
         minLength: 1;
         maxLength: 10000;
       }>;
-    creator: Attribute.Relation<
+    openedBy: Attribute.Relation<
       'api::allocation.allocation',
       'oneToOne',
       'plugin::users-permissions.user'
