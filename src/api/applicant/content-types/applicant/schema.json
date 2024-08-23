@@ -78,6 +78,15 @@
       },
       "type": "richtext",
       "maxLength": 50000
+    },
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "maxLength": 999
     }
   }
 }
