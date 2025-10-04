@@ -1,0 +1,2 @@
+pipenv>=2025.0.4
+fastapi[standard]>=0.118.0
