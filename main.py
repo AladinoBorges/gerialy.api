@@ -17,7 +17,19 @@ async def lifespan(app: FastAPI):
     DATABASE_ENGINE.dispose()
 
 
-API = FastAPI(lifespan=lifespan)
+API = FastAPI(
+    lifespan=lifespan,
+    docs_url="/documentation",
+    version="0.0.1",
+    redoc_url=None,
+    title="gerialy",
+    summary="",
+    terms_of_service="http://example.com/terms",
+    license_info={
+        "name": "GNU GPL v3.0",
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+    }
+)
 
 # PUBLIC ROUTES
 API.include_router(status_router)
