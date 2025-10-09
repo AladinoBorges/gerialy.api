@@ -1,9 +1,12 @@
+import json
 from os import getenv
 
 from sqlalchemy import URL, Engine, create_engine
 
 
 def generate_engine() -> Engine:
+    DEVELOPMENT: bool = json.loads(getenv("DEV_ENVIRONMENT", "0"))
+
     URL_OBJECT = URL.create(
         drivername=getenv("DATABASE_DRIVER"),
         username=getenv("DATABASE_USERNAME"),
@@ -15,7 +18,7 @@ def generate_engine() -> Engine:
 
     return create_engine(
         url=URL_OBJECT,
-        echo=True,
+        echo=DEVELOPMENT,
         pool_pre_ping=True,
         pool_recycle=3600
     )
