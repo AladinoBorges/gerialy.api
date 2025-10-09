@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from connections import DATABASE_ENGINE, generate_database_schemas
-from routers import status
+from routers import shares_router, status_router
 from schemas.tables import BaseTable, easter_eggs
 
 
@@ -17,12 +17,17 @@ async def lifespan(app: FastAPI):
     DATABASE_ENGINE.dispose()
 
 
-main_app = FastAPI(lifespan=lifespan)
+API = FastAPI(lifespan=lifespan)
 
 # PUBLIC ROUTES
-main_app.include_router(status.router)
+API.include_router(status_router)
+
+# EASTER EGGS ROUTES
+API.include_router(shares_router)
+
+# TODO: MARKETPLACE ROUTES
 
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(main_app, host="0.0.0.0", port=8000)
+    uvicorn.run(API, host="0.0.0.0", port=8000)
