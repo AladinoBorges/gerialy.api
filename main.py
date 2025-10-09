@@ -2,12 +2,16 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from connections import DATABASE_ENGINE
+from connections import DATABASE_ENGINE, generate_database_schemas
 from routers import status
+from schemas.tables import BaseTable, easter_eggs
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    generate_database_schemas()
+    BaseTable.metadata.create_all(bind=DATABASE_ENGINE)
+
     yield
 
     DATABASE_ENGINE.dispose()
