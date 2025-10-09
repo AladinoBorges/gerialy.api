@@ -1,9 +1,11 @@
 from sqlalchemy import Column, DateTime, Float, Integer, String
-from tables import BaseTable
+
+from schemas.tables import BaseTable
 
 
 class ProductsEasterEggTable(BaseTable):
     __tablename__ = "products"
+    __table_args__ = {"schema": "easter_eggs"}
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
