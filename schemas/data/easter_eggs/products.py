@@ -4,29 +4,29 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class ProductEasterEgg(BaseModel):
+class Product(BaseModel):
     name: str
     description: str
     price: float
 
 
-class ProductCreateEasterEgg(ProductEasterEgg):
+class ProductCreate(Product):
     created_at: datetime = datetime.now()
     updated_at: Optional[datetime] = None
 
 
-class ProductEasterEggRead(ProductEasterEgg):
+class ProductRead(Product):
     id: int
     created_at: datetime
     updated_at: datetime
 
 
-class ProductUpdateEasterEgg(BaseModel):
+class ProductUpdate(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     price: Optional[float] = None
     updated_at: datetime = datetime.now()
 
 
-class ProductDeleteEasterEgg(BaseModel):
+class ProductDelete(BaseModel):
     id: int

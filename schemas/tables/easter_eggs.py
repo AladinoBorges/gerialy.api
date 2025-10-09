@@ -3,7 +3,7 @@ from sqlalchemy import Column, DateTime, Float, Integer, String
 from schemas.tables import BaseTable
 
 
-class ProductsEasterEggTable(BaseTable):
+class ProductsTable(BaseTable):
     __tablename__ = "products"
     __table_args__ = {"schema": "easter_eggs"}
 
