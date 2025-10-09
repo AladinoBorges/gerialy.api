@@ -18,6 +18,8 @@ async def lifespan(app: FastAPI):
 
 
 main_app = FastAPI(lifespan=lifespan)
+
+# PUBLIC ROUTES
 main_app.include_router(status.router)
 
 if __name__ == "__main__":
