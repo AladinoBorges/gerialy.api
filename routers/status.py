@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-router = APIRouter(tags=["Status"])
+status_router = APIRouter(tags=["Status"])
 
 
-@router.get("/")
+@status_router.get("/")
 def ping():
     return {"hello": "brave new world"}
