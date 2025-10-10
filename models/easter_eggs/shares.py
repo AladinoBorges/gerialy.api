@@ -2,19 +2,19 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from schemas.data.easter_eggs.shares import ShareCreate, ShareUpdate
-from schemas.tables.easter_eggs import SharesTable
+from schemas.tables.easter_eggs import ShareTable
 
 
 def get_all(session: Session, skip: int = 0, limit: int = 20):
-    QUERY = session.query(SharesTable)
+    QUERY = session.query(ShareTable)
     RESULTS = QUERY.offset(skip).limit(limit).all()
 
     return RESULTS
 
 
 def get_one(session: Session, id: int):
-    RESULT = session.query(SharesTable).filter(
-        SharesTable.id == id
+    RESULT = session.query(ShareTable).filter(
+        ShareTable.id == id
     ).first()
 
     if not RESULT:
@@ -24,7 +24,7 @@ def get_one(session: Session, id: int):
 
 
 def create(session: Session, data: ShareCreate):
-    SERIALIZED_DATA = SharesTable(
+    SERIALIZED_DATA = ShareTable(
         name=data.name,
         description=data.description,
         price=data.price,
@@ -55,8 +55,8 @@ def update(session: Session, id: int, data: ShareUpdate):
 
 
 def delete(session: Session, id: int):
-    deleted_id = session.query(SharesTable).filter(
-        SharesTable.id == id
+    deleted_id = session.query(ShareTable).filter(
+        ShareTable.id == id
     ).delete()
 
     return deleted_id

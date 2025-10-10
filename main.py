@@ -39,6 +39,8 @@ API.include_router(shares_router)
 
 # TODO: MARKETPLACE ROUTES
 
+# TODO: CHECK HUMANS ROUTES
+
 if __name__ == "__main__":
     import uvicorn
 
