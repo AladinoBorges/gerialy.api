@@ -49,6 +49,10 @@ class ShareTable(BaseTable):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     price = Column(Float, nullable=False)
+    is_recurring = Column(Boolean, default=False, nullable=False)
+    gateway_id = Column(String, nullable=False, unique=True)
+    gateway_provider = Column(String, nullable=False)
+    metadata = Column(JSON, nullable=True)
     subscriptions = relationship(
         "SubscriptionTable",
         back_populates="share"
@@ -79,6 +83,7 @@ class SubscriptionTable(BaseTable):
     )
     status = relationship("StatusTable", back_populates="subscriptions")
     price_at_subscription = Column(Float, nullable=False)
+    invoice_url = Column(String, nullable=True)
     started_at = Column(DateTime(timezone=True), nullable=False)
     expires_at = Column(DateTime(timezone=True), nullable=False)
     canceled_at = Column(DateTime(timezone=True), nullable=True)
